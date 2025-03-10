@@ -7,8 +7,15 @@ const { Pool } = require('pg');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// ✅ פתרון בעיית CORS
+const corsOptions = {
+    origin: ["https://cake-with-ai.vercel.app"], // ודא שזה ה-URL הנכון של האתר שלך
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
-app.use(cors());
 
 app.get('/', (req, res) => {
     res.send("Server is running!");
@@ -88,10 +95,8 @@ app.post('/get-recipe', async (req, res) => {
     }
 });
 
-
-
 app.get('/recipes/search', async (req, res) => {
-    const { name } = req.query; // חיפוש לפי שם
+    const { name } = req.query;
 
     if (!name) {
         return res.status(400).json({ error: "Please provide a recipe name to search." });
@@ -114,8 +119,6 @@ app.get('/recipes/search', async (req, res) => {
     }
 });
 
-
-
 app.get('/recipes', async (req, res) => {
     try {
         const result = await pool.query("SELECT * FROM recipes;");
@@ -125,6 +128,7 @@ app.get('/recipes', async (req, res) => {
         res.status(500).json({ error: "Error fetching recipes" });
     }
 });
+
 app.get('/recipes/:id', async (req, res) => {
     const recipeId = parseInt(req.params.id);
     try {

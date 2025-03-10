@@ -14,9 +14,6 @@ app.get('/', (req, res) => {
     res.send("Server is running!");
 });
 
-
-
-
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: { rejectUnauthorized: false }

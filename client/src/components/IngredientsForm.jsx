@@ -4,7 +4,7 @@ import axios from 'axios';
 const API_BASE_URL = "https://cake-recipe-api.onrender.com"; // ודא שזה ה-URL של ה-Backend שלך
 
 const IngredientsForm = () => {
-    const [ingredients, setIngredients] = useState('');
+    const [ingredients, setIngredients] =  useState('');
     const [message, setMessage] = useState('');
 
     const handleSubmit = async (e) => {

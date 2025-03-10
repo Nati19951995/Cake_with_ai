@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+const API_BASE_URL = "https://cake-recipe-api.onrender.com";
+
 const RecipeList = () => {
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/recipes')
+        axios.get(`${API_BASE_URL}/api/recipes`)
             .then(response => setRecipes(response.data))
             .catch(error => console.log(error));
     }, []);

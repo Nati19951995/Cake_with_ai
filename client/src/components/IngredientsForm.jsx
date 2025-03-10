@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const API_BASE_URL = "https://cake-recipe-api.onrender.com";
+
 const IngredientsForm = () => {
     const [ingredients, setIngredients] = useState('');
     const [message, setMessage] = useState('');
@@ -8,7 +10,7 @@ const IngredientsForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/api/recipes/generate', {
+            const response = await axios.post(`${API_BASE_URL}/api/recipes/generate`, {
                 ingredients: ingredients.split(", ")
             });
             setMessage("Recipe created!!");

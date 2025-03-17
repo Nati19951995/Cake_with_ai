@@ -12,7 +12,7 @@ const IngredientsForm = () => {
         console.log("✅ Create Recipe button clicked!"); // בדיקת לחיצה על הכפתור
 
         try {
-            const response = await axios.post(`${API_BASE_URL}/api/recipes/generate`, {
+            const response = await axios.post(`${API_BASE_URL}/get-recipe`, {  // 🔥 עדכון הנתיב
                 ingredients: ingredients.split(", ")
             });
 
